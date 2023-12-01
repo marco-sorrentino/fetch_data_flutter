@@ -14,6 +14,7 @@ class DataFetch extends StatefulWidget {
 class _DataFetchState extends State<DataFetch> {
   List<User> _userInfo = [];
   var _isLoading = true;
+  var _isError = false;
 
   @override
   void initState() {
@@ -31,17 +32,36 @@ class _DataFetchState extends State<DataFetch> {
         List<User> users = data.map((json) => User.fromJson(json)).toList();
         setState(() {
           _userInfo = users;
+          _isLoading = false;
         });
       } else {
-        print("Error during the fetch: ${response.statusCode}");
+        setState(() {
+          _isError = true;
+          _isLoading = false;
+        });
       }
     } catch (e) {
-      print("Error during the fetch of $e");
+      setState(() {
+        _isError = true;
+        _isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (_isError) {
+      return const Center(
+        child: Text("I'm sorry an error occured"),
+      );
+    }
+
     return Column(
       children: [
         Expanded(
