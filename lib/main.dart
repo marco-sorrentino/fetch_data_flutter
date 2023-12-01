@@ -1,4 +1,4 @@
-import 'package:fetch_data_flutter/widget/data_fetch.dart';
+import 'package:fetch_data_flutter/widget/product_fetch.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: DataFetch(),
+        body: ProductFetch(),
       ),
     );
   }

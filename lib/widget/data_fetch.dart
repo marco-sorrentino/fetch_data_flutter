@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:fetch_data_flutter/models/user.dart';
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
