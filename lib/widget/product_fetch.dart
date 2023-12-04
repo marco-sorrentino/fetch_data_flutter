@@ -39,6 +39,30 @@ class _ProductFetchState extends State<ProductFetch> {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("ciao");
+    return ListView.builder(
+      itemCount: _listProduct.length,
+      itemBuilder: (context, index) {
+        return Dismissible(
+          key: GlobalKey(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListTile(
+                title: Text(_listProduct[index].title),
+                subtitle: Text(_listProduct[index].price.toString()),
+                leading: Image.network(
+                  _listProduct[index].image,
+                  width: 50,
+                  height: 50,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
